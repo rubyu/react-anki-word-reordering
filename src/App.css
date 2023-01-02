@@ -1,0 +1,40 @@
+
+#sentence,
+#hidden-input {
+  display: none;
+}
+
+#app {
+  text-align: left;
+}
+
+#preview {
+  padding-top: 2em;
+  margin: 2em;
+}
+#preview::before {
+  content: "";
+  display: inline-block;
+}
+
+#preview span {
+  border: 1px solid #90b9fd;
+  padding: 0.5em;
+  margin: 0.5em;
+  background-color: #b3d1ff;
+}
+#editor {
+  padding-top: 2em;
+  margin: 2em;
+  border-top: 1px solid #c2c2c2;
+}
+#editor::before {
+  content: "";
+  display: inline-block;
+}
+#editor span {
+  border: 1px solid #969696;
+  padding: 0.5em;
+  margin: 0.5em;
+  background-color: #d9d9d9;
+}
