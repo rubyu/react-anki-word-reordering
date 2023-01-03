@@ -4,7 +4,7 @@ function Result(props) {
   return (
     <div id="result">
       <div id="expected">
-        {props.correctAnswer.map((x, i)=>{
+        {props.expected.map((x, i)=>{
           return <span key={"result-item-expected-" + i}>{x}</span>
         })}
       </div>

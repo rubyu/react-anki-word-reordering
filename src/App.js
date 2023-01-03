@@ -13,8 +13,6 @@ function App() {
   const sentence = getSentence();
   console.log("sentence:", sentence);
 
-  const [orderingResult, setOrderingResult] = useState(null);
-
   function cleanup(s){
     return s.trim().replace(/\s+/g, " ");
   }
@@ -23,15 +21,15 @@ function App() {
     s = s.replace(/(\w{2,})([,.!?])/g, "$1 $2");
     return s.split(" ");
   }
-  const correctAnswer = getPeaces(sentence);
-  console.log("correctAnswer:", correctAnswer);
+  const expected = getPeaces(sentence);
+  console.log("expected:", expected);
 
   function toWord(i) {
-    return correctAnswer[i];
+    return expected[i];
   }
 
   const [epState, setEpState] = useState(() => {
-    const n = correctAnswer.length;
+    const n = expected.length;
     const e = [...Array(n).keys()].sort(() => Math.random() - 0.5);
     const p = [];
     return {
@@ -41,31 +39,26 @@ function App() {
   });
   console.log("epState:", epState);
 
-  function isCorrectAnswer() {
-    return epState.editor.length === 0 &&
-        JSON.stringify(correctAnswer) === JSON.stringify(epState.preview);
-  }
-  function getCurrentAnswer() {
-    return epState.preview.map(i => toWord(i)).join(" ").replace(/(\w{2,}) ([,.!?])/g, "$1$2");
-  }
-  function getResult(givenAnswer) {
-    console.assert(correctAnswer.length === givenAnswer.length);
-    return givenAnswer.map((x, i) => {
+  const [orderingResult, setOrderingResult] = useState(null);
+  console.log("orderingResult:", orderingResult);
+
+  function getResult(actual) {
+    console.assert(expected.length === actual.length);
+    return actual.map((x, i) => {
       return {
-        "isCorrectAnswer": toWord(x) === correctAnswer[i],
+        "isCorrectAnswer": toWord(x) === expected[i],
         "value": toWord(x)
       }
     });
   }
   function finalizeOrdering() {
-    console.assert(correctAnswer.length - epState.preview.length <= 1);
-    const givenAnswer = epState.editor.length === 0 ? epState.preview : epState.preview.concat(epState.editor);
-    const result = getResult(givenAnswer);
+    console.assert(expected.length - epState.preview.length <= 1);
+    const actual = epState.editor.length === 0 ? epState.preview : epState.preview.concat(epState.editor);
+    const result = getResult(actual);
     setOrderingResult(result);
   }
   useEffect(() =>{
-    const s = isCorrectAnswer() ? sentence : getCurrentAnswer();
-    if (epState.editor.length > 0) return;
+    if (epState.editor.length > 1) return;
     finalizeOrdering();
   }, [epState]);
 
@@ -94,7 +87,7 @@ function App() {
           <Editor state={epState} setState={setEpState} toWord={toWord} editorToPreview={editorToPreview} />
         </>
         :
-        <Result result={orderingResult} correctAnswer={correctAnswer} />
+        <Result result={orderingResult} expected={expected} />
       }
     </div>
   );
