@@ -1,40 +1,95 @@
 
-#sentence,
-#hidden-input {
+#sentence {
   display: none;
 }
 
 #app {
   text-align: left;
+  color: black;
 }
-
-#preview {
-  padding-top: 2em;
-  margin: 2em;
+#app span {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-#preview::before {
-  content: "";
-  display: inline-block;
-}
-
-#preview span {
-  border: 1px solid #90b9fd;
-  padding: 0.5em;
-  margin: 0.5em;
-  background-color: #b3d1ff;
-}
+#preview,
 #editor {
   padding-top: 2em;
   margin: 2em;
-  border-top: 1px solid #c2c2c2;
 }
+#preview::before,
 #editor::before {
   content: "";
   display: inline-block;
 }
+#preview span,
+#editor span {
+  padding: 0.5em;
+  margin: 0.5em;
+  display: inline-block;
+}
+#preview span {
+  border: 1px solid #90b9fd;
+  background-color: #b3d1ff;
+}
+#editor {
+  border-top: 1px solid #c2c2c2;
+}
 #editor span {
   border: 1px solid #969696;
+  background-color: #d9d9d9;
+}
+
+#result span {
   padding: 0.5em;
   margin: 0.5em;
   background-color: #d9d9d9;
+  display: inline-block;
+}
+#result #expected,
+#result #actual {
+  margin: 2em;
+}
+#result #actual {
+  border-top: 1px solid #c2c2c2;
+  padding-top: 2em;
+}
+#result #actual .good {
+  background-color: #62e576;
+}
+#result #actual .bad {
+  background-color: #ea5a5a;
+}
+
+.nightMode #app {
+  color: white;
+}
+.nightMode #preview span {
+  border: 1px solid #6986b9;
+  background-color: #6679a2;
+}
+.nightMode #editor {
+  border-top: 1px solid #808080;
+}
+.nightMode #editor span {
+  border: 1px solid #696969;
+  background-color: #3d3d3d;
+}
+.nightMode #result #expected span {
+  border: 1px solid #7c7c7c;
+  background-color: #3d3d3d;
+}
+.nightMode #result #actual {
+  border-top: 1px solid #808080;
+  padding-top: 2em;
+}
+.nightMode #result #actual .good {
+  border: 1px solid #3b8646;
+  background-color: #27572e;
+}
+.nightMode #result #actual .bad {
+  border: 1px solid #9d3b3b;
+  background-color: #702c2c;
 }

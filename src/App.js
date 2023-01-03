@@ -1,7 +1,8 @@
 import './App.css';
 import Editor from "./Editor";
 import Preview from "./Preview";
-import {useEffect, useState} from "react";
+import Result from "./Result";
+import React, {useEffect, useState} from "react";
 
 function App() {
   function getSentence() {
@@ -12,27 +13,7 @@ function App() {
   const sentence = getSentence();
   console.log("sentence:", sentence);
 
-  function setHiddenInput(s) {
-    const elm = document.querySelector("#hidden-input input");
-    console.assert(elm !== null);
-    elm.value = s;
-    console.log("input.value:", s);
-  }
-  function finalizeInput() {
-    const elm = document.querySelector("#hidden-input input");
-    console.assert(elm !== null);
-    const key = {
-      code: "Enter",
-      key: "Enter",
-      charCode: 13,
-      keyCode: 13,
-      view: window,
-      bubbles: true
-    };
-    const evt = new KeyboardEvent("keypress", key);
-    elm.dispatchEvent(evt);
-    console.log("keypress(Enter) sent to input");
-  }
+  const [orderingResult, setOrderingResult] = useState(null);
 
   function cleanup(s){
     return s.trim().replace(/\s+/g, " ");
@@ -67,12 +48,25 @@ function App() {
   function getCurrentAnswer() {
     return epState.preview.map(i => toWord(i)).join(" ").replace(/(\w{2,}) ([,.!?])/g, "$1$2");
   }
-
+  function getResult(givenAnswer) {
+    console.assert(correctAnswer.length === givenAnswer.length);
+    return givenAnswer.map((x, i) => {
+      return {
+        "isCorrectAnswer": toWord(x) === correctAnswer[i],
+        "value": toWord(x)
+      }
+    });
+  }
+  function finalizeOrdering() {
+    console.assert(correctAnswer.length - epState.preview.length <= 1);
+    const givenAnswer = epState.editor.length === 0 ? epState.preview : epState.preview.concat(epState.editor);
+    const result = getResult(givenAnswer);
+    setOrderingResult(result);
+  }
   useEffect(() =>{
     const s = isCorrectAnswer() ? sentence : getCurrentAnswer();
-    setHiddenInput(s);
     if (epState.editor.length > 0) return;
-    finalizeInput();
+    finalizeOrdering();
   }, [epState]);
 
   function editorToPreview(i) {
@@ -94,8 +88,14 @@ function App() {
 
   return (
     <div id="app">
-      <Preview state={epState} setState={setEpState} toWord={toWord} previewToEditor={previewToEditor} />
-      <Editor state={epState} setState={setEpState} toWord={toWord} editorToPreview={editorToPreview} />
+      {orderingResult === null ?
+        <>
+          <Preview state={epState} setState={setEpState} toWord={toWord} previewToEditor={previewToEditor} />
+          <Editor state={epState} setState={setEpState} toWord={toWord} editorToPreview={editorToPreview} />
+        </>
+        :
+        <Result result={orderingResult} correctAnswer={correctAnswer} />
+      }
     </div>
   );
 }
