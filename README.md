@@ -20,9 +20,9 @@ Written in new year holidays, 2023.
 <p id="sentence">{{Back}}</p>
 <div id="root"></div>
 </div>
-<script defer="defer" src="./react-anki-word-reordering/main.f7fb95f5.js"></script>
+<script defer="defer" src="main.f7fb95f5.js"></script>
 ```
-Note: src of the above script tag have to be matched to the path of the file you located on step 2.
+Note: src of the above script tag must be matched to the path of the file you located on step 2. If you located the file under a folder, the path must be the relative path from collection.media folder.
 
 ### Style
 ```
