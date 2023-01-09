@@ -20,7 +20,7 @@ Written in new year holidays, 2023.
 <p id="sentence">{{Back}}</p>
 <div id="root"></div>
 </div>
-<script defer="defer" src="main.f7fb95f5.js"></script>
+<script defer="defer" src="main.XXXXXXXX.js"></script>
 ```
 Note: src of the above script tag must be matched to the path of the file you located on step 2. If you located the file under a folder, the path must be the relative path from collection.media folder.
 
@@ -32,7 +32,7 @@ Note: src of the above script tag must be matched to the path of the file you lo
     font-size: 12px;
 }
 
-/* copy and paste the content of the css file downloaded in step1 */
+/* copy and paste the content of main.XXXXXXXX.css file downloaded in step1 */
 ```
 
 4. change the note type of an existing card to the note type created above or create a new one.
