@@ -4,9 +4,11 @@ function Result(props) {
   return (
     <div id="result">
       <div id="expected">
-        {props.expected.map((x, i)=>{
-          return <span key={"result-item-expected-" + i}>{x}</span>
-        })}
+          <div id="expected-inner">
+            {props.expected.map((x, i)=>{
+              return <span key={"result-item-expected-" + i}>{x}</span>
+            })}
+          </div>
       </div>
       <div id="actual">
         {props.result.map((x, i)=>{

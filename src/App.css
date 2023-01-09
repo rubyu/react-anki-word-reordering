@@ -1,10 +1,18 @@
+html,
+body,
+div#root,
+div#app,
+div#result {
+  height: 100%;
+  margin: 0;
+}
 
 #sentence {
   display: none;
 }
 
 #app {
-  text-align: center;
+  text-align: left;
   color: black;
 }
 #app span {
@@ -16,9 +24,19 @@
 }
 #preview,
 #editor {
-  padding-top: 2em;
-  margin: 2em;
+  padding: 2.5vh 2.5vw;
+  width: calc(100% - 5vw);
+  height: calc(50% - 5vh - 1px);
+  overflow-y: auto;
 }
+#preview {
+  display: flex;
+  flex-flow: column nowrap;
+}
+#preview > :first-child {
+  margin-top: auto;
+}
+
 #preview::before,
 #editor::before {
   content: "";
@@ -42,19 +60,28 @@
   background-color: #d9d9d9;
 }
 
+#result #expected {
+  display: flex;
+  flex-flow: column nowrap;
+}
 #result span {
   padding: 0.5em;
   margin: 0.5em;
   background-color: #d9d9d9;
   display: inline-block;
 }
-#result #expected,
-#result #actual {
-  margin: 2em;
+#expected,
+#actual {
+  padding: 2.5vh 2.5vw;
+  width: calc(100% - 5vw);
+  height: calc(50% - 5vh - 1px);
+  overflow-y: auto;
+}
+#expected > :first-child {
+  margin-top: auto;
 }
 #result #actual {
   border-top: 1px solid #c2c2c2;
-  padding-top: 2em;
 }
 #result #actual .good {
   background-color: #62e576;
