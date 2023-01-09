@@ -2,8 +2,8 @@ A POC implementation of word re-ordering card in Anki.
 Written in new year holidays, 2023.
 
 ## How to introduce
-1. download main.f7fb95f5.js from [here](https://github.com/rubyu/react-anki-word-reordering/releases/tag/1.0)
-2. place the file, downloaded in step 1, wherever under Anki's collection.media folder
+1. download main.XXXXXXXX.js and main.XXXXXXXX.css from [here](https://github.com/rubyu/react-anki-word-reordering/releases/)
+2. place the js file, downloaded in step 1, wherever under Anki's collection.media folder
 3. create a new note type with an appropriate name and set the card template as follows
 
 ### Front
@@ -26,105 +26,13 @@ Note: src of the above script tag must be matched to the path of the file you lo
 
 ### Style
 ```
+/* set basic UI setting for your deck  */
 .card {
     font-family: arial;
     font-size: 12px;
 }
 
-#sentence {
-  display: none;
-}
-
-#app {
-  text-align: left;
-  color: black;
-}
-#app span {
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-#preview,
-#editor {
-  padding-top: 2em;
-  margin: 2em;
-}
-#preview::before,
-#editor::before {
-  content: "";
-  display: inline-block;
-}
-#preview span,
-#editor span {
-  padding: 0.5em;
-  margin: 0.5em;
-  display: inline-block;
-}
-#preview span {
-  border: 1px solid #90b9fd;
-  background-color: #b3d1ff;
-}
-#editor {
-  border-top: 1px solid #c2c2c2;
-}
-#editor span {
-  border: 1px solid #969696;
-  background-color: #d9d9d9;
-}
-
-#result span {
-  padding: 0.5em;
-  margin: 0.5em;
-  background-color: #d9d9d9;
-  display: inline-block;
-}
-#result #expected,
-#result #actual {
-  margin: 2em;
-}
-#result #actual {
-  border-top: 1px solid #c2c2c2;
-  padding-top: 2em;
-}
-#result #actual .good {
-  background-color: #62e576;
-}
-#result #actual .bad {
-  background-color: #ea5a5a;
-}
-
-.nightMode #app {
-  color: white;
-}
-.nightMode #preview span {
-  border: 1px solid #6986b9;
-  background-color: #6679a2;
-}
-.nightMode #editor {
-  border-top: 1px solid #808080;
-}
-.nightMode #editor span {
-  border: 1px solid #696969;
-  background-color: #3d3d3d;
-}
-.nightMode #result #expected span {
-  border: 1px solid #7c7c7c;
-  background-color: #3d3d3d;
-}
-.nightMode #result #actual {
-  border-top: 1px solid #808080;
-  padding-top: 2em;
-}
-.nightMode #result #actual .good {
-  border: 1px solid #3b8646;
-  background-color: #27572e;
-}
-.nightMode #result #actual .bad {
-  border: 1px solid #9d3b3b;
-  background-color: #702c2c;
-}
+/* copy and paste the content of the css file downloaded in step1 */
 ```
 
 4. change the note type of an existing card to the note type created above or create a new one.
