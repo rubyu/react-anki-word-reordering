@@ -31,6 +31,9 @@ Note: src of the above script tag must be matched to the path of the file you lo
     font-family: arial;
     font-size: 12px;
 }
+#front {
+  padding: 2.5vh 2.5vw;
+}
 
 /* copy and paste the content of main.XXXXXXXX.css file downloaded in step1 */
 ```
